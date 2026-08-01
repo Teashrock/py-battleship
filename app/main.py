@@ -59,7 +59,7 @@ class Battleship:
             elif start[1] != end[1]:
                 present_points = [(start[0], y) for y in range(start[1], end[1] + 1)]
             else:
-                present_points = ship
+                present_points = ship[0]
             self.field[tuple(present_points)] = Ship(ship[0], ship[1])
         print(self.field)
 
@@ -70,6 +70,6 @@ class Battleship:
         # in the ship or not.
         ship = self.field.get(location)
         if ship is not None:
-            ship.fire(*location)
+            return ship.fire(*location)
         else:
             return "Miss!"
