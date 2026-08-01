@@ -14,10 +14,10 @@ class Ship:
         if start == end:
             self.decks = [Deck(*start)]
         else:
-            start_column = start[0]
-            start_row    = start[1]
-            end_column   = end[0]
-            end_row      = end[1]
+            start_row    = start[0]
+            start_column = start[1]
+            end_row      = end[0]
+            end_column   = end[1]
             self.decks = [
                 Deck(row, column)
                 for row in range(start_row, end_row + 1)
