@@ -48,14 +48,26 @@ class Battleship:
         # Its keys are tuples - the coordinates of the non-empty cells,
         # A value for each cell is a reference to the ship
         # which is located in it
-        self.field: dict[tuple, Ship] = {ship: Ship(ship[0], ship[1]) for ship in ships}
+        #self.field: dict[tuple, Ship] = {ship: Ship(ship[0], ship[1]) for ship in ships}
+        self.field: dict[tuple, Ship] = {}
+        for ship in ships:
+            present_points = []
+            start = ship[0]
+            end   = ship[1]
+            if start[0] != end[0]:
+                present_points = [(x, end[1]) for x in range(start[0], end[0] + 1)]
+            elif start[1] != end[1]:
+                present_points = [(start[0], y) for y in range(start[1], end[1] + 1)]
+            else:
+                present_points = ship
+            self.field[tuple(present_points)] = Ship(ship[0], ship[1])
+        print(self.field)
 
     def fire(self, location: tuple):
         # This function should check whether the location
         # is a key in the `self.field`
         # If it is, then it should check if this cell is the last alive
         # in the ship or not.
-        print(location)
         ship = self.field.get(location)
         if ship is not None:
             ship.fire(*location)
