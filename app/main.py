@@ -93,7 +93,7 @@ class Battleship:
                     if point in i:
                         if self.field[i].is_drowned:
                             print("X", end="")
-                        elif self.field[i].get_deck(row, column).is_alive:
+                        elif self.field[i].get_deck(column, row).is_alive:
                             print("□", end="")
                         else:
                             print("*", end="")
@@ -125,13 +125,18 @@ class Battleship:
             and deck_control[3] == 1
         ):
             raise ValueError("Incorrect amount of ships was provided!")
-        forbidden_zone: set[tuple] = {}
-        for ship in self.field:
-            for point in ship:
-                if point == ship[0]:
-                    forbidden_zone.add((point[0] - 1, point[1] - 1))
-                    forbidden_zone.add((point[0], point[1] - 1))
-                    forbidden_zone.add((point[0] + 1, point[1] - 1))
-                forbidden_zone.add((point[0] + 1, point[1] - 1))
-                if point == ship[len(ship) - 1]:
-                    pass
+        for ship_key in self.field:
+            ship_cells = set(ship_key)
+
+            forbidden = set()
+            for row, col in ship_cells:
+                for dr in (-1, 0, 1):
+                    for dc in (-1, 0, 1):
+                        forbidden.add((row + dr, col + dc))
+
+            for other_key in self.field:
+                if other_key == ship_key:
+                    continue
+                for cell in other_key:
+                    if cell in forbidden:
+                        raise ValueError("Ships are too close!")
