@@ -96,5 +96,5 @@ class Battleship:
 
     def _validate_field(self):
         if len(self.field) != 10:
-            raise ValueError("The total amount of ships shoul be 10!")
+            raise ValueError("The total amount of ships should be 10!")
         
