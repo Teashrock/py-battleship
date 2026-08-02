@@ -82,12 +82,19 @@ class Battleship:
                 point = row, column
                 for i in self.field:
                     if point in i:
+                        if self.field[i].is_drowned:
+                            print("X", end="")
                         if self.field[i].get_deck(row, column).is_alive:
                             print("□", end="")
                         else:
-                            print("X", end="")
+                            print("*", end="")
                     else:
                         print("~", end="")
                 row += 1
             print()
             column += 1
+
+    def _validate_field(self):
+        if len(self.field) != 10:
+            raise ValueError("The total amount of ships shoul be 10!")
+        
