@@ -97,7 +97,7 @@ class Battleship:
     def _validate_field(self):
         if len(self.field) != 10:
             raise ValueError("The total amount of ships should be 10!")
-        deck_control =[0, 0, 0, 0]
+        deck_control = [0, 0, 0, 0]
         for ship in self.field:
             if len(ship) == 4:
                 deck_control[3] += 1
@@ -114,3 +114,5 @@ class Battleship:
             and deck_control[3] == 1
         ):
             ValueError("Incorrect amount of ships was provided!")
+        
+        
