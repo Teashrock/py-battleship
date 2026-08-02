@@ -93,7 +93,7 @@ class Battleship:
                     if point in i:
                         if self.field[i].is_drowned:
                             print("X", end="")
-                        if self.field[i].get_deck(row, column).is_alive:
+                        elif self.field[i].get_deck(row, column).is_alive:
                             print("□", end="")
                         else:
                             print("*", end="")
