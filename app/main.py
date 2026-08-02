@@ -84,8 +84,8 @@ class Battleship:
     def print_field(self) -> None:
         max_column = 9
         max_row = 9
-        row = 0
         column = 0
+        row = 0
         while column <= max_column:
             while row <= max_row:
                 point = row, column
@@ -125,3 +125,13 @@ class Battleship:
             and deck_control[3] == 1
         ):
             raise ValueError("Incorrect amount of ships was provided!")
+        forbidden_zone: set[tuple] = {}
+        for ship in self.field:
+            for point in ship:
+                if point == ship[0]:
+                    forbidden_zone.add((point[0] - 1, point[1] - 1))
+                    forbidden_zone.add((point[0], point[1] - 1))
+                    forbidden_zone.add((point[0] + 1, point[1] - 1))
+                forbidden_zone.add((point[0] + 1, point[1] - 1))
+                if point == ship[len(ship) - 1]:
+                    pass
