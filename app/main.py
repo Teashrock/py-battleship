@@ -114,5 +114,3 @@ class Battleship:
             and deck_control[3] == 1
         ):
             ValueError("Incorrect amount of ships was provided!")
-        
-        
