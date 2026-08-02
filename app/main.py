@@ -43,8 +43,7 @@ class Ship:
         self.is_drowned = all(not deck.is_alive for deck in self.decks)
         if self.is_drowned:
             return "Sunk!"
-        else:
-            return "Hit!"
+        return "Hit!"
 
 
 class Battleship:
@@ -87,8 +86,8 @@ class Battleship:
         max_row = 9
         row = 0
         column = 0
-        while column < max_column:
-            while row < max_row:
+        while column <= max_column:
+            while row <= max_row:
                 point = row, column
                 for i in self.field:
                     if point in i:
@@ -103,6 +102,7 @@ class Battleship:
                 row += 1
             print()
             column += 1
+            row = 0
 
     def _validate_field(self) -> None:
         if len(self.field) != 10:
@@ -123,4 +123,4 @@ class Battleship:
             and deck_control[2] == 2
             and deck_control[3] == 1
         ):
-            ValueError("Incorrect amount of ships was provided!")
+            raise ValueError("Incorrect amount of ships was provided!")
