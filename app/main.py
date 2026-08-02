@@ -97,6 +97,7 @@ class Battleship:
                             print("□", end="")
                         else:
                             print("*", end="")
+                        break
                     else:
                         print("~", end="")
                 row += 1
