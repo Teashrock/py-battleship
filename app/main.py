@@ -70,5 +70,4 @@ class Battleship:
         for i in self.field:
             if location in i:
                 return self.field[i].fire(*location)
-            else:
-                return "Miss!"
+        return "Miss!"
