@@ -30,7 +30,7 @@ class Ship:
             if row == deck.row and column == deck.column:
                 return deck
 
-    def fire(self, row, column):
+    def fire(self, row, column) -> str:
         # Change the `is_alive` status of the deck
         # And update the `is_drowned` value if it's needed
         fired_deck = self.get_deck(row, column)
@@ -62,7 +62,7 @@ class Battleship:
                 present_points = [(ship[0])]
             self.field[tuple(present_points)] = Ship(ship[0], ship[1])
 
-    def fire(self, location: tuple):
+    def fire(self, location: tuple) -> str:
         # This function should check whether the location
         # is a key in the `self.field`
         # If it is, then it should check if this cell is the last alive
@@ -71,3 +71,23 @@ class Battleship:
             if location in i:
                 return self.field[i].fire(*location)
         return "Miss!"
+
+    def print_field(self) -> None:
+        max_column = 9
+        max_row    = 9
+        row = 0
+        column = 0
+        while column < max_column:
+            while row < max_row:
+                point = row, column
+                for i in self.field:
+                    if point in i:
+                        if self.field[i].get_deck(row, column).is_alive:
+                            print("□", end="")
+                        else:
+                            print("X", end="")
+                    else:
+                        print("~", end="")
+                row += 1
+            print()
+            column += 1
