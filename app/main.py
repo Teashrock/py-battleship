@@ -35,7 +35,7 @@ class Ship:
         # And update the `is_drowned` value if it's needed
         fired_deck = self.get_deck(row, column)
         fired_deck.is_alive = False
-        self.is_drowned = not all(deck.is_alive for deck in self.decks)
+        self.is_drowned = all(not deck.is_alive for deck in self.decks)
         if self.is_drowned:
             return "Sunk!"
         else:
