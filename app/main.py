@@ -70,6 +70,7 @@ class Battleship:
             else:
                 present_points = [(ship[0])]
             self.field[tuple(present_points)] = Ship(ship[0], ship[1])
+        self._validate_field()
 
     def fire(self, location: tuple) -> str:
         # This function should check whether the location
