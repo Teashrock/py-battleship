@@ -73,13 +73,9 @@ class Battleship:
         self._validate_field()
 
     def fire(self, location: tuple) -> str:
-        # This function should check whether the location
-        # is a key in the `self.field`
-        # If it is, then it should check if this cell is the last alive
-        # in the ship or not.
-        for i in self.field:
-            if location in i:
-                return self.field[i].fire(*location)
+        for ship_coords in self.field:
+            if location in ship_coords:
+                return self.field[ship_coords].fire(*location)
         return "Miss!"
 
     def print_field(self) -> None:
